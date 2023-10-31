@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace AutoManager;
 
-use SebastianBergmann\Type\NullType;
-
 interface ManufacturerInterface
 {
     public function getId(): int|null;
