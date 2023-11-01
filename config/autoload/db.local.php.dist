@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'db' => [
+        'driver'   => 'Pdo_MySQL',
+        'dsn'      => 'mysql:dbname=your_dbname;host=127.0.0.1;port=3307;charset=utf8',
+        'username' => 'your_username',
+        'password' => 'your_password',
+    ],
+];
