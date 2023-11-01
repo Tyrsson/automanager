@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace AutoManager\Storage;
 
 use Laminas\Db\ResultSet\ResultSetInterface;
+use Laminas\Db\TableGateway\AbstractTableGateway;
+use Laminas\Db\TableGateway\TableGatewayInterface;
 use Webinertia\Db\EntityInterface;
-use Webinertia\Db\ModelTrait;
 
 trait RepositoryTrait
 {
-    use ModelTrait;
+    // Both of these are not required to be present $|$ but it allows vscode to read and not see the methods as undefined
+    private TableGatewayInterface|AbstractTableGateway $gateway;
 
     public function save(EntityInterface $entity): EntityInterface|int
     {
@@ -29,6 +31,14 @@ trait RepositoryTrait
             // todo: add logging, throw exception
         }
         return $this->hydrator->hydrate($set, $entity);
+    }
+
+    public function fetchAll($fetchArray = false): ResultSetInterface|array
+    {
+        if ($fetchArray) {
+            return $this->gateway->select()->toArray();
+        }
+        return $this->gateway->select();
     }
 
     public function findOneById(int $id): EntityInterface { }

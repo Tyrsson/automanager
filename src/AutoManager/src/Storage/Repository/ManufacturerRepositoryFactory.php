@@ -19,13 +19,14 @@ final class ManufacturerRepositoryFactory
     public function __invoke(ContainerInterface $container): ManufacturerRepository
     {
         return new ManufacturerRepository(
+            new ReflectionHydrator(),
             new Db\TableGateway(
                 Schema::MANUFACTURER_TABLE,
                 $container->get(AdapterInterface::class), // This reads the 'db' array from the config
                 null, // we are not passing an EventFeature object
                 new HydratingResultSet(
                     new ReflectionHydrator(),
-                    new Manufacturer()
+                    $container->get(Manufacturer::class)
                 ),
                 null, // we are not passing an explicit Sql object, the Tablegateway will create an instance bound to the passed table
                 $container->has(EventManagerInterface::class) ? $container->get(EventManagerInterface::class) : null, // if we have an event manager pass it

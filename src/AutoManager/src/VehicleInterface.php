@@ -14,8 +14,8 @@ interface VehicleInterface extends StorageInterface
     public function getYear(): ?int;
     public function setVin(?string $vin): self;
     public function getVin(): ?string;
-    public function setManufacturer(ManufacturerInterface $manufacturer): self;
-    public function getManufacturer(): ManufacturerInterface;
-    public function setModel(ModelInterface $model): self;
-    public function getModel(): ModelInterface;
+    public function setManufacturerId(?int $manufacturerId): self;
+    public function getManufacturerId(): ?int;
+    public function setModelId(?int $modelId): self;
+    public function getModelId(): ?int;
 }

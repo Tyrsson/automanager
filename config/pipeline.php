@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use AutoManager\Middleware\ActionMiddleware;
 use Laminas\Stratigility\Middleware\ErrorHandler;
 use Mezzio\Application;
 use Mezzio\Handler\NotFoundHandler;
@@ -13,6 +14,7 @@ use Mezzio\Router\Middleware\ImplicitHeadMiddleware;
 use Mezzio\Router\Middleware\ImplicitOptionsMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
+use Mezzio\Session\SessionMiddleware;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -24,6 +26,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // all Exceptions.
     $app->pipe(ErrorHandler::class);
     $app->pipe(ServerUrlMiddleware::class);
+
+
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
@@ -60,12 +64,15 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
     // Seed the UrlHelper with the routing results:
     $app->pipe(UrlHelperMiddleware::class);
 
+    $app->pipe(SessionMiddleware::class);
+
     // Add more middleware here that needs to introspect the routing results; this
     // might include:
     //
     // - route-based authentication
     // - route-based validation
     // - etc.
+    $app->pipe('/automanager', ActionMiddleware::class);
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);

@@ -58,6 +58,7 @@
         "mezzio/mezzio-helpers": "^5.7",
         "mezzio/mezzio-laminasviewrenderer": "^2.2",
         "mezzio/mezzio-session": "^1.13",
+        "mezzio/mezzio-session-ext": "^1.18",
         "webinertia/webinertia-db": "^0.0.7",
         "webinertia/webinertia-utils": "^0.0.10"
     },
