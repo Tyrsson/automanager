@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Oct 31, 2023 at 04:05 AM
+-- Generation Time: Nov 02, 2023 at 05:36 AM
 -- Server version: 10.10.2-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `garage`
+-- Table structure for table `owner`
 --
 
-DROP TABLE IF EXISTS `garage`;
-CREATE TABLE IF NOT EXISTS `garage` (
+DROP TABLE IF EXISTS `owner`;
+CREATE TABLE IF NOT EXISTS `owner` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `userId` int(10) UNSIGNED NOT NULL,
   `vehicleId` int(10) UNSIGNED NOT NULL,
@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS `garage` (
 
 DROP TABLE IF EXISTS `manufacturer`;
 CREATE TABLE IF NOT EXISTS `manufacturer` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `manufacturerId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `manufacturerName` varchar(100) NOT NULL,
   `country` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`manufacturerId`),
   KEY `manu_country` (`country`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Manufacturer Data';
 
@@ -60,10 +60,11 @@ CREATE TABLE IF NOT EXISTS `manufacturer` (
 
 DROP TABLE IF EXISTS `model`;
 CREATE TABLE IF NOT EXISTS `model` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `modelId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `manufacturerId` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
+  `modelName` varchar(100) NOT NULL,
+  `year` int(4) NOT NULL,
+  PRIMARY KEY (`modelId`),
   KEY `FK_manufacturerId` (`manufacturerId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Model table with FK to manufacturer table';
 
@@ -75,10 +76,10 @@ CREATE TABLE IF NOT EXISTS `model` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `userId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` varchar(350) NOT NULL,
   `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`userId`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,12 +90,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE IF NOT EXISTS `vehicle` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `vehicleId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `manufacturerId` int(10) UNSIGNED NOT NULL,
   `modelId` int(10) UNSIGNED NOT NULL,
-  `year` int(10) UNSIGNED NOT NULL,
   `vin` varchar(17) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`vehicleId`),
   KEY `FK_manufacturerId` (`manufacturerId`),
   KEY `FK_modeltable_id` (`modelId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Holds individual vehicle records';
@@ -106,12 +106,12 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 --
 -- Indexes for table `manufacturer`
 --
-ALTER TABLE `manufacturer` ADD FULLTEXT KEY `name_index` (`name`);
+ALTER TABLE `manufacturer` ADD FULLTEXT KEY `name_index` (`manufacturerName`);
 
 --
 -- Indexes for table `model`
 --
-ALTER TABLE `model` ADD FULLTEXT KEY `model_name` (`name`);
+ALTER TABLE `model` ADD FULLTEXT KEY `model_name` (`modelName`);
 
 --
 -- Indexes for table `vehicle`

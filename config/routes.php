@@ -40,4 +40,15 @@ use Psr\Container\ContainerInterface;
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
     $app->get('/', App\Handler\HomePageHandler::class, 'home');
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
+    // $app->route(
+    //     '/automanager',
+    //     [
+    //         Middleware\ManufacturerMiddleware::class,
+    //         Middleware\ModelMiddleware::class,
+    //         Middleware\VehicleMiddleware::class,
+    //         Middleware\ManagerMiddleware::class,
+    //     ],
+    //     ['GET', 'POST', 'PUT', 'DELETE'],
+    //     'automanager'
+    // );
 };

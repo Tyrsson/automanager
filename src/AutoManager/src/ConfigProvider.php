@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace AutoManager;
 
+use AutoManager\Storage\Entity\Manufacturer;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\SharedEventManager;
@@ -59,8 +60,13 @@ final class ConfigProvider
         return [
             [
                 'name' => 'automanager',
-                'path' => '/automanager[/{action:add|edit|delete}[/{type:manufacturer|model|vehicle}[/id:manufacturerId|modelId|vehicleId}]]]',
-                'middleware' => Middleware\ActionMiddleware::class,
+                'path' => '/automanager/list[/{manufacturer:[a-zA-Z]+}[/{model:[a-zA-Z0-9]+}[/{year:\d+}[/id:\d+}]]]]',
+                'middleware' => [
+                    Middleware\ManufacturerMiddleware::class,
+                    Middleware\ModelMiddleware::class,
+                    Middleware\VehicleMiddleware::class,
+                    Middleware\ManagerMiddleware::class,
+                ],
             ],
         ];
     }

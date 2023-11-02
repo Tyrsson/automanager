@@ -13,7 +13,10 @@ declare(strict_types=1);
 return [
     'dependencies' => [
         'factories' => [
-            AutoManager\Middleware\ActionMiddleware::class => AutoManager\Middleware\ActionMiddlewareFactory::class,
+            AutoManager\Middleware\ManagerMiddleware::class => AutoManager\Middleware\ManagerMiddlewareFactory::class,
+            AutoManager\Middleware\ManufacturerMiddleware::class => AutoManager\Middleware\ManufacturerMiddlewareFactory::class,
+            AutoManager\Middleware\ModelMiddleware::class => AutoManager\Middleware\ModelMiddlewareFactory::class,
+            AutoManager\Middleware\VehicleMiddleware::class => AutoManager\Middleware\VehicleMiddlewareFactory::class,
         ],
     ],
 ];

@@ -7,7 +7,7 @@ namespace AutoManager\Storage;
 use Laminas\Hydrator\ReflectionHydrator;
 use Webinertia\Db;
 
-class AbstractRepository implements RepositoryInterface, Db\RepositoryCommandInterface
+class AbstractRepository implements RepositoryInterface
 {
     use RepositoryTrait;
 

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace AutoManager;
 
-abstract class AbstractManufacturer implements ManufacturerInterface
+trait ManufacturerTrait
 {
     private ?int $manufacturerId;
+    private ?string $manufacturerName;
     private ?string $country;
     private ?string $name;
 
@@ -19,6 +20,17 @@ abstract class AbstractManufacturer implements ManufacturerInterface
     public function getManufacturerId(): ?int
     {
         return $this->manufacturerId;
+    }
+
+    public function setManufacturerName(?string $manufacturerName): ManufacturerInterface
+    {
+        $this->manufacturerName = $manufacturerName;
+        return $this;
+    }
+
+    public function getManufacturerName(): ?string
+    {
+        return $this->manufacturerName;
     }
 
     public function setCountry(?string $country): ManufacturerInterface

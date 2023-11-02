@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace AutoManager;
 
-abstract class AbstractModel implements ModelInterface
+trait ModelTrait
 {
     private ?int $manufacturerId;
     private ?int $modelId;
-    private ?string $name;
+    private ?string $modelName;
+    private ?int $year;
 
     final protected function setModelId(?int $modelId): ModelInterface
     {
@@ -32,14 +33,23 @@ abstract class AbstractModel implements ModelInterface
         return $this->manufacturerId;
     }
 
-    public function setName(?string $name): StorageInterface
+    public function setModelName(?string $modelName): ModelInterface
     {
-        $this->name = $name;
+        $this->modelName = $modelName;
         return $this;
     }
 
-    public function getName(): ?string
+    public function getModelName(): ?string
     {
-        return $this->name;
+        return $this->modelName;
+    }
+    public function setYear(int $year): self
+    {
+        $this->year = $year;
+        return $this;
+    }
+    public function getYear(): ?int
+    {
+        return $this->year;
     }
 }

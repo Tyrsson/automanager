@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace AutoManager\Storage\Entity;
 
-use AutoManager\AbstractVehicle;
+use AutoManager\VehicleInterface;
+use AutoManager\VehicleTrait;
 
-final class Vehicle extends AbstractVehicle
+final class Vehicle implements VehicleInterface
 {
-
+    use VehicleTrait;
 }

@@ -6,14 +6,16 @@ namespace AutoManager;
 
 use AutoManager\VehicleInterface;
 
-abstract class AbstractVehicle implements VehicleInterface
+trait VehicleTrait
 {
+    use ManufacturerTrait;
+    use ModelTrait;
+
     private ?int    $manufacturerId;
     private ?int    $modelId;
     private ?string $name;
     private ?int    $vehicleId;
     private ?string $vin;
-    private ?int    $year;
 
     final protected function setVehicleId(?int $vehicleId): VehicleInterface
     {
@@ -23,17 +25,6 @@ abstract class AbstractVehicle implements VehicleInterface
     public function getVehicleId(): ?int
     {
         return $this->vehicleId;
-    }
-
-    public function setYear(int $year): VehicleInterface
-    {
-        $this->year = $year;
-        return $this;
-    }
-
-    public function getYear(): ?int
-    {
-        return $this->year;
     }
 
     public function setVin(?string $vin): VehicleInterface
