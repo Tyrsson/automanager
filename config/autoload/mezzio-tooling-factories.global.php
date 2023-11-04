@@ -7,12 +7,17 @@
  * removing factory definitions; other dependency types may be overwritten
  * when regenerating this file via mezzio-tooling commands.
  */
-
+ 
 declare(strict_types=1);
 
 return [
     'dependencies' => [
         'factories' => [
+            AutoManager\Handler\ManagerHandler::class => AutoManager\Handler\ManagerHandlerFactory::class,
+            AutoManager\Handler\NewManufacturerHandler::class => AutoManager\Handler\NewManufacturerHandlerFactory::class,
+            AutoManager\Handler\NewModelHandler::class => AutoManager\Handler\NewModelHandlerFactory::class,
+            AutoManager\Handler\NewVehicleHandler::class => AutoManager\Handler\NewVehicleHandlerFactory::class,
+            AutoManager\Handler\VehicleListingHandler::class => AutoManager\Handler\VehicleListingHandlerFactory::class,
             AutoManager\Middleware\ManagerMiddleware::class => AutoManager\Middleware\ManagerMiddlewareFactory::class,
             AutoManager\Middleware\ManufacturerMiddleware::class => AutoManager\Middleware\ManufacturerMiddlewareFactory::class,
             AutoManager\Middleware\ModelMiddleware::class => AutoManager\Middleware\ModelMiddlewareFactory::class,

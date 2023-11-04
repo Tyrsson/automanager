@@ -28,7 +28,6 @@ class ModelMiddleware implements MiddlewareInterface
             } catch (\Throwable $th) {
                 throw $th;
             }
-
         }
         $request = $request->withAttribute(ModelInterface::class, $entity);
         return $handler->handle($request);
