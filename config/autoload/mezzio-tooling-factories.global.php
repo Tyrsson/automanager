@@ -13,6 +13,8 @@ declare(strict_types=1);
 return [
     'dependencies' => [
         'factories' => [
+            Api\Handler\ManufacturerHandler::class => Api\Handler\ManufacturerHandlerFactory::class,
+            Api\Middleware\ManufacturerMiddleware::class => Api\Middleware\ManufacturerMiddlewareFactory::class,
             AutoManager\Handler\ManagerHandler::class => AutoManager\Handler\ManagerHandlerFactory::class,
             AutoManager\Handler\NewManufacturerHandler::class => AutoManager\Handler\NewManufacturerHandlerFactory::class,
             AutoManager\Handler\NewModelHandler::class => AutoManager\Handler\NewModelHandlerFactory::class,

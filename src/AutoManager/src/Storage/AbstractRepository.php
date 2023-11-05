@@ -12,9 +12,10 @@ class AbstractRepository implements RepositoryInterface
     use RepositoryTrait;
 
     public function __construct(
-        private ReflectionHydrator $hydrator = new ReflectionHydrator(),
+        protected ReflectionHydrator $hydrator,
         Db\TableGateway $gateway,
     ) {
+        $this->hydrator = new ReflectionHydrator();
         $this->gateway = $gateway;
     }
 }

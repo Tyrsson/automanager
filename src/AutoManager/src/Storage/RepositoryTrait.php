@@ -22,7 +22,7 @@ use Webinertia\Db\EntityInterface;
 trait RepositoryTrait
 {
     // Both of these are not required to be present $|$ but it allows vscode to read and not see the methods as undefined
-    private TableGatewayInterface|AbstractTableGateway $gateway;
+    protected TableGatewayInterface|AbstractTableGateway $gateway;
 
     public function save(EntityInterface $entity): EntityInterface|int
     {

@@ -1,0 +1,11 @@
+<?php
+
+declare(strict_types=1);
+
+use Laminas\Form\FormInterface;
+
+if (isset($this->form) && $this->form instanceof FormInterface) {
+    $this->form->setAttributes(['method' => 'POST', 'action' => $this->url('new-manufacturer')]);
+    echo $this->form($this->form);
+}
+

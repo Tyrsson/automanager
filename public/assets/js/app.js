@@ -3,7 +3,7 @@
     $('.navbar-nav li a').on('click', (event) => {
         event.preventDefault();
         let href = event.target.href;
-        let targetNode = $('#app-work-space');
+        let targetNode = $('#app-workspace');
         let segments = href.split('/');
         let logout = segments.find((value, index) => {
             if (value === 'logout') {
@@ -24,8 +24,8 @@
             }
         });
     });
-    $('#app-work-space').on('click', '#auto-manager-sidebar > a', (event) => {
-        alert('found');
+    $('#app-workspace').on('click', '#auto-manager-sidebar > a', (event) => {
+        //alert('found');
         event.preventDefault();
         let href = event.target.href;
         let targetNode = $('#manager-form');
@@ -50,7 +50,8 @@
         });
     });
     // attach a .on to the app-workspace so we can listen for the submit
-    $('#app-workspace-space').on('submit', function(event) {
+    $('#app-workspace').on('submit', function(event) {
+        //alert('found');
         event.preventDefault();
         let form    = $(event.target);
         let href    = $(form).attr('action');

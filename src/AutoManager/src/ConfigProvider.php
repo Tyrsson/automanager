@@ -19,6 +19,7 @@ final class ConfigProvider
             'dependencies' => $this->getDependencies(),
             'routes'       => $this->getRoutes(),
             'templates'    => $this->getTemplates(),
+            'form_elements' => $this->getFormElements(),
         ];
     }
 
@@ -50,6 +51,16 @@ final class ConfigProvider
                 Storage\Entity\Manufacturer::class                     => Storage\Entity\Manufacturer::class,
                 Storage\Entity\Model::class                            => Storage\Entity\Model::class,
                 Storage\Entity\Vehicle::class                          => Storage\Entity\Vehicle::class,
+            ],
+        ];
+    }
+
+    public function getFormElements(): array
+    {
+        return [
+            'factories' => [
+                Form\Manufacturer::class => Form\ManufacturerFactory::class,
+                Form\Fieldset\ManufacturerFieldset::class => Form\Fieldset\ManufacturerFieldsetFactory::class,
             ],
         ];
     }
@@ -98,7 +109,7 @@ final class ConfigProvider
     {
         return [
             'paths' => [
-                'auto-manager' => [__DIR__ . '/../templates/auto-manager'],
+                'auto-manager' => [__DIR__ . '/../templates'],
             ],
         ];
     }
