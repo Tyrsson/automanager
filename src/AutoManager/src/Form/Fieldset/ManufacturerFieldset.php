@@ -29,15 +29,13 @@ final class ManufacturerFieldset extends Fieldset implements InputFilterProvider
      */
     public function init()
     {
-        //$this->setAllowedObjectBindingClass(Manufacturer::class);
+        // the following two method calls is what allows us to get an object instance when calling getData()
         $this->setObject(new Manufacturer());
         $this->setHydrator(new ReflectionHydrator());
-        $this
-        ->add([
+        $this->add([
             'name' => 'manufacturerId',
             'type' => Hidden::class,
-        ])
-        ->add([
+        ])->add([ // TODO add NoRecordExist Validator to this element
             'name' => 'manufacturerName',
             'type' => Element\Text::class,
             'attributes' => [
@@ -49,14 +47,13 @@ final class ManufacturerFieldset extends Fieldset implements InputFilterProvider
                 'label'                => 'Manufacturer',
                 'help'                 => 'Full Manufacturer Company Name',
                 'bootstrap_attributes' => [
-                    'class' => 'col-md-5'
+                    'class' => 'col-md-5',
                 ],
                 'help_attributes' => [
                     'class' => 'form-text text-muted',
                 ],
             ],
-        ])
-        ->add([
+        ])->add([
             'name' => 'country',
             'type' => Element\Text::class,
             'attributes' => [

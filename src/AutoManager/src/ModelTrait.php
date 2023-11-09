@@ -6,10 +6,11 @@ namespace AutoManager;
 
 trait ModelTrait
 {
-    private ?int $manufacturerId;
-    private ?int $modelId;
-    private ?string $modelName;
-    private ?int $year;
+    // These must have default values set to be hydrated
+    private ?int $manufacturerId = null;
+    private ?int $modelId        = null;
+    private ?string $modelName   = null;
+    private ?int $year           = null;
 
     final protected function setModelId(?int $modelId): ModelInterface
     {

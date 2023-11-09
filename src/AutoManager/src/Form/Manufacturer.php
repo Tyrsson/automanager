@@ -13,7 +13,7 @@ final class Manufacturer extends Form
     protected $attributes = ['class' => 'row g-3 manufacturer-form', 'method' => 'POST'];
     public function __construct(
         $name = 'manufacturer-form',
-        $options = ['mode' => self::DEFAULT_MODE]
+        $options = ['mode' => self::DEFAULT_MODE] // Limatus relevant
     ) {
         parent::__construct($name, $options);
     }
